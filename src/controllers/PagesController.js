@@ -2,8 +2,7 @@ const knex = require("../database/knex");
 
 class PagesController {
   async create(request, response) {
-    const { title,description,date} = request.body;
-    const { album_id } = request.params;
+    const { title,description,date,album_id} = request.body;
 
     await knex("pages").insert({
       album_id,
@@ -12,7 +11,7 @@ class PagesController {
       date
     });
 
-    response.json();
+    return response.json();
   }
 
   async show(req,res){
@@ -21,6 +20,13 @@ class PagesController {
     const album = await knex("pages").where({id}).first()
 
     return res.json(album)
+  }
+
+  async delete(req,res){
+    const {id} = req.params
+
+    await knex("pages").where({id}).delete()
+    return res.json()
   }
 }
 

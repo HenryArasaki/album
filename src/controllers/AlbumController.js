@@ -1,9 +1,10 @@
+const { response } = require("express");
 const knex = require("../database/knex");
 
 class AlbumsController {
   async create(request, response) {
     const { name,isPublic} = request.body;
-    const { user_id } = request.params;
+    const  user_id  = request.user.id;
 
     await knex("albums").insert({
       user_id,
@@ -11,10 +12,10 @@ class AlbumsController {
       isPublic
     });
 
-    response.json();
+    return response.json();
   }
 
-  async show(req,res){
+  async index(req,res){
     const {id} = req.params
 
     const album = await knex("albums").where({id}).first()
@@ -31,6 +32,15 @@ class AlbumsController {
 
     await knex("albums").where({id}).delete()
     return res.json()
+  }
+
+  async show(req,res){
+    const {name} = req.query
+    const user_id = req.user.id
+
+    const albums = await knex("albums").where({user_id}).whereLike("name", `%${name}%`).orderBy("id")
+
+    return res.json(albums)
   }
 }
 
