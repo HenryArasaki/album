@@ -7,6 +7,7 @@ exports.up = function (knex) {
       .inTable("albums")
       .onDelete("CASCADE");
     table.text("title");
+    table.text("photo");
     table.text("description");
     table.timestamp("date");
     table.timestamp("created_at").default(knex.fn.now());

@@ -3,6 +3,7 @@ const knex = require("../database/knex");
 class PagesController {
   async create(request, response) {
     const { title,description,date,album_id} = request.body;
+    
 
     await knex("pages").insert({
       album_id,
