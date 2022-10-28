@@ -2,18 +2,20 @@ const knex = require("../database/knex");
 
 class PagesController {
   async create(request, response) {
-    const { title,description,date,album_id} = request.body;
+    const { title,description,date,album_id,photo} = request.body;
     
 
     await knex("pages").insert({
       album_id,
       title,
       description,
-      date
+      date,
+      photo
     });
 
     return response.json();
   }
+
 
   async show(req,res){
     const {id} = req.params
