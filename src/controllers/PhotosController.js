@@ -11,7 +11,10 @@ class PhotosController {
         const filename = await diskStorage.saveFile(photoFilename)
 
         res.json(filename)
+    }
 
+    async show(req,res){
+        
     }
 }
 
