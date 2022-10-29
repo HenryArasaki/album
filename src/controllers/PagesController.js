@@ -2,7 +2,8 @@ const knex = require("../database/knex");
 
 class PagesController {
   async create(request, response) {
-    const { title,description,date,album_id,photo} = request.body;
+    const { title,description,date,album_id} = request.body;
+    const photo = request.file.filename
     
 
     await knex("pages").insert({
@@ -13,7 +14,7 @@ class PagesController {
       photo
     });
 
-    return response.json();
+    return response.json({title,photo});
   }
 
 
