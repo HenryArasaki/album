@@ -2,7 +2,8 @@ const knex = require("../database/knex");
 
 class PagesController {
   async create(request, response) {
-    const { title,description,date,album_id} = request.body;
+    const { title,description,date} = request.body;
+    const {album_id} = request.params
     const photo = request.file.filename
     
 

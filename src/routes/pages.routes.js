@@ -12,7 +12,7 @@ pagesRoutes.use(ensureAuthenticated)
 
 const pagesController = new PagesController();
 
-pagesRoutes.post("/", upload.single("photo"), pagesController.create);
+pagesRoutes.post("/:album_id", upload.single("photo"), pagesController.create);
 // pagesRoutes.post("/", photosController.create, pagesController.create);
 pagesRoutes.get("/:id", pagesController.show);
 pagesRoutes.delete("/:id", pagesController.delete);
