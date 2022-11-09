@@ -15,7 +15,7 @@ class AlbumsController {
     return response.json();
   }
 
-  async index(req,res){
+  async show(req,res){
     const {id} = req.params
 
     const album = await knex("albums").where({id}).first()
@@ -34,11 +34,11 @@ class AlbumsController {
     return res.json()
   }
 
-  async show(req,res){
+  async index(req,res){
     const {name} = req.query
     const user_id = req.user.id
 
-    const albums = await knex("albums").where({user_id}).whereLike("name", `%${name}%`).orderBy("id")
+    const albums = await knex("albums").where({user_id}).orderBy("id")
 
     return res.json(albums)
   }
