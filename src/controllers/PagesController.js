@@ -5,8 +5,6 @@ class PagesController {
     const { title,description,date,photo} = request.body;
     const {album_id} = request.params
  
-    
-
     await knex("pages").insert({
       album_id,
       title,
