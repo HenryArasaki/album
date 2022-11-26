@@ -38,6 +38,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-const PORT = 3333;
+const PORT = process.end.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Server is runnin on Port ${PORT}`));
