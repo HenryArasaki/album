@@ -17,8 +17,8 @@ app.use(express.json());
 
 app.use("/photos", express.static(uploadConfig.UPLOADS_FOLDER));
 
-app.use(express.json({limit: "30mb", extended: true}))
-app.use(express.urlencoded({limit: "30mb", extended: true, parameterLimit: 50000}))
+app.use(express.json())
+app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit: 100000}))
 
 app.use(routes);
 
